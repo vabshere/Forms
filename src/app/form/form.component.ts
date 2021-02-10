@@ -1,20 +1,18 @@
-/** @format */
-
-import { Component, OnInit } from "@angular/core";
-import { CrudService } from "./service/crud.service";
-import { Validator } from "@angular/forms";
+import { Component, OnInit } from '@angular/core';
 import { FormArray } from "@angular/forms";
-import { BlogComponent } from "./blog/blog.component";
-import {FormComponent} from "./form/form.component"
-
+import { CrudService } from "../service/crud.service";
 import { FormGroup, FormControl, FormBuilder } from "@angular/forms";
+
 @Component({
-	selector: "app-root",
-	templateUrl: `./index.component.html`,
-	styles: [],
+  selector: 'app-form',
+  templateUrl: './form.component.html',
+  styleUrls: ['./form.component.css']
 })
-export class AppComponent {
-	
+export class FormComponent implements OnInit {
+	choice:string = "mcq";
+	mcq:string = "mcq";
+	file:string ="file";
+	text:string ="text";
 	questionBox: FormGroup;
 	constructor(public crudservice: CrudService, private qfb: FormBuilder) {
 		this.questionBox = qfb.group({
@@ -81,14 +79,18 @@ export class AppComponent {
 
 	up(change:any){
 		const id = change.target.id;
-		console.log(id);
+		// console.log(id);
 
 
 		if (this.questionBox.get("question") != null){
  
 			// this.questionBox.get("question").value[id].questionBody += "1";
 		}
-	} 
-
+	}
+	changefile(event:Event){
+		this.choice="file";
+		console.log(this.file);
+	}
 	//  var questions: string ;
 }
+

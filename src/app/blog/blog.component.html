@@ -1,0 +1,13 @@
+<div class="container">
+<form [formGroup]="blogBox" (ngSubmit)="post()">
+<div class="mb-3">
+  <label for="formGroupExampleInput" class="form-label">Blog heading</label>
+  <input type="text" class="form-control" id="formGroupExampleInput" formControlName="heading" placeholder="Example input placeholder">
+</div>
+<div class="mb-3">
+  <label for="formGroupExampleInput2" class="form-label">Blog Content</label>
+  <ckeditor [editor]="Editor" formControlName="content" data=""></ckeditor>
+  <!-- <input type="text" class="form-control" id="formGroupExampleInput2"  placeholder="Another input placeholder"> -->
+</div>
+<button class="btn-success">Publish</button>
+</form></div>

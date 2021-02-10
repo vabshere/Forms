@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "doctor-blog-17aec": {
+      "hosting": {
+        "app": [
+          "doctor-blog-17aec"
+        ]
+      }
+    }
+  }
+}

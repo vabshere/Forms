@@ -1,0 +1,85 @@
+<!-- @format -->
+<div class="form-start" style="width: 120%; position: relative; left: -50px">
+	<div>
+		<button
+			class="btn-warning m-2"
+			id="try"
+			style="position: fixed; top: 20px; z-index: 2; right: 40px"
+			(click)="done()"
+			type="button"
+		>
+			Add More Questions
+		</button>
+	</div>
+	<select id="box" (click)=changefile($event) style="position: fixed; top: 32px; right: 220px" >
+		<option value="Multiple Choice">MCQ</option>
+		<option  value="File Upload">File</option>
+		<option value="Text">Text</option>
+	</select>
+	<div class="forms" [innerHTML]="" #ngfor [formGroup]="questionBox">
+		<div class="quiz-wrapper mt-3">
+			<div
+				align="center"
+				*ngFor="
+					let item of questionBox.controls.question['controls'];
+					let i = index
+				"
+			>
+				<form
+					formArrayName="question"
+					id="task{{ i }}"
+					class="quiz"
+					style="
+						display: flex;
+						flex-direction: column;
+						margin-top: 100px;
+					"
+				>
+					<h2 style="margin-bottom: 20px">Question {{ i + 1 }}</h2>
+					<textarea
+						name="question"
+						type="text"
+						id="{{ i }}"
+						style="height: 8rem; width: 100%"
+						placeholder="Type your question here"
+						(keyup)="up($event)"
+					></textarea>
+					<div class="mcq" *ngIf="choice === mcq ">
+						<div class="opt">
+							<input type="radio" value="1" name="1" />
+							<label style="padding: 10px">Option 1</label>
+							<input name="first" type="text" />
+						</div>
+						<div class="opt">
+							<input type="radio" value="2" name="1" />
+							<label style="padding: 10px">Option 2</label>
+							<input name="first" type="text" />
+						</div>
+						<div class="opt">
+							<input type="radio" value="3" name="1" />
+							<label style="padding: 10px">Option 3</label>
+							<input name="first" type="text" />
+						</div>
+						<div class="opt">
+							<input type="radio" value="4" name="1" />
+							<label style="padding: 10px">Option 4</label>
+							<input name="first" type="text" />
+						</div>
+					</div>
+					<div class="file" *ngIf="choice === file && true">
+						<input type="file" />
+					</div>
+					<div class="text" *ngIf="choice === text">
+					<textarea ></textarea>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<button
+	style="position: fixed; top: 25px; left: 50px; z-index: 2"
+	(click)="submit()"
+>
+	Submit
+</button>
